@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Krishi Loan Advisor Design System — All colors MUST be HSL */
+
+@layer base {
+  :root {
+    /* Core palette — soft lavender + white */
+    --background: 250 40% 97%;
+    --foreground: 250 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 250 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 250 25% 15%;
+
+    /* Primary: rich lavender */
+    --primary: 258 68% 58%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 258 68% 92%;
+    --primary-glow: 258 80% 70%;
+    --primary-dark: 258 68% 42%;
+
+    /* Secondary: soft sage green */
+    --secondary: 145 45% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 145 45% 90%;
+
+    /* Muted */
+    --muted: 250 30% 94%;
+    --muted-foreground: 250 15% 55%;
+
+    /* Accent */
+    --accent: 258 50% 95%;
+    --accent-foreground: 258 68% 40%;
+
+    /* Risk colors */
+    --risk-safe: 142 71% 45%;
+    --risk-safe-bg: 142 71% 93%;
+    --risk-medium: 38 92% 50%;
+    --risk-medium-bg: 38 92% 92%;
+    --risk-high: 0 84% 60%;
+    --risk-high-bg: 0 84% 93%;
+
+    /* Semantic */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 250 25% 88%;
+    --input: 250 25% 91%;
+    --ring: 258 68% 58%;
+
+    --radius: 0.875rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(258 68% 62%), hsl(280 60% 70%), hsl(220 70% 72%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(250 40% 98%));
+    --gradient-primary: linear-gradient(135deg, hsl(258 68% 58%), hsl(270 65% 65%));
+    --gradient-success: linear-gradient(135deg, hsl(142 71% 45%), hsl(160 65% 50%));
+    --gradient-bg: linear-gradient(160deg, hsl(250 40% 97%) 0%, hsl(260 50% 95%) 50%, hsl(280 40% 96%) 100%);
+
+    /* Shadows */
+    --shadow-card: 0 4px 24px -4px hsl(258 68% 58% / 0.12);
+    --shadow-card-hover: 0 12px 40px -8px hsl(258 68% 58% / 0.25);
+    --shadow-button: 0 4px 16px -4px hsl(258 68% 58% / 0.4);
+    --shadow-input: 0 0 0 3px hsl(258 68% 58% / 0.15);
+
+    /* Sidebar */
+    --sidebar-background: 258 40% 16%;
+    --sidebar-foreground: 250 20% 90%;
+    --sidebar-primary: 258 68% 68%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 258 30% 22%;
+    --sidebar-accent-foreground: 250 20% 90%;
+    --sidebar-border: 258 30% 22%;
+    --sidebar-ring: 258 68% 58%;
+  }
+
+  .dark {
+    --background: 250 25% 8%;
+    --foreground: 250 20% 95%;
+    --card: 250 25% 12%;
+    --card-foreground: 250 20% 95%;
+    --primary: 258 68% 68%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 250 20% 16%;
+    --muted-foreground: 250 15% 65%;
+    --border: 250 20% 20%;
+    --input: 250 20% 18%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-md;
+    border: 1px solid hsl(var(--border) / 0.6);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Input with floating label */
+  .krishi-input {
+    @apply w-full rounded-xl bg-muted/50 border border-border px-4 py-3
+      text-foreground placeholder-muted-foreground
+      focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
+      transition-all duration-200;
+  }
+
+  /* Primary button */
+  .krishi-btn-primary {
+    background: var(--gradient-primary);
+    @apply text-primary-foreground font-semibold rounded-xl px-6 py-3
+      shadow-[var(--shadow-button)]
+      hover:scale-[1.02] hover:shadow-[var(--shadow-card-hover)]
+      active:scale-[0.98]
+      transition-all duration-200;
+  }
+
+  /* Card lift on hover */
+  .hover-lift {
+    @apply transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply rounded-2xl p-5 bg-card;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Risk badge */
+  .risk-safe   { @apply bg-[hsl(var(--risk-safe-bg))]   text-[hsl(var(--risk-safe))]; }
+  .risk-medium { @apply bg-[hsl(var(--risk-medium-bg))] text-[hsl(var(--risk-medium))]; }
+  .risk-high   { @apply bg-[hsl(var(--risk-high-bg))]   text-[hsl(var(--risk-high))]; }
+}
