@@ -32,5 +32,20 @@ Frontend for Krishi Wise Loan application built with React + Vite.
 ## 📦 Installation
 
 ```bash
-cd frontend
+cd krishi-wise-loan-main
 npm install
+
+⚙️ Environment Variables
+Create .env file:
+VITE_API_URL=http://localhost:5000
+▶️ Run Project
+npm run dev
+
+App runs at:
+http://localhost:5173
+
+🔗 Backend Connection
+
+Make sure backend is running on:
+
+http://localhost:5000
