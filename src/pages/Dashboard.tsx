@@ -206,10 +206,10 @@ const SchemeCard = ({
 /* ─── Main Dashboard ───────────────────────────────── */
 const Dashboard = () => {
   const navigate = useNavigate();
-  const user = localStorage.getItem("krishi_user") || "Farmer";
-  const [lang, setLang] = useState<"en" | "hi">("en");
+ const user = localStorage.getItem("krishi_user") || "Farmer";
+  const [lang, setLang] = useState<"en" | "hi">("hi");
   const [isListening, setIsListening] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState<boolean>(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [activeTab, setActiveTab] = useState<"home" | "analyze" | "schemes" | "profile">("home");
   const [weather, setWeather] = useState(null);
@@ -847,12 +847,17 @@ const fetchSchemes = async () => {
 </div>
 
 {/* Grid */}
-<div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+{/* Grid */}
+<div className="grid grid-cols-2 md:grid-cols-4 gap-3 relative z-50">
+  
   {schemes.length > 0 ? (
     schemes.map((s, i) => (
-      <div
+      <a
         key={s._id || i}
-        className="relative p-4 rounded-2xl bg-card border border-border hover:border-primary/40 hover:shadow-card transition-all duration-300"
+        href={s.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative p-4 rounded-2xl bg-card border border-border hover:border-primary/40 hover:shadow-card transition-all duration-300 cursor-pointer block"
       >
         <div className="text-2xl mb-2">🌱</div>
 
@@ -868,28 +873,25 @@ const fetchSchemes = async () => {
           {s.eligibility}
         </p>
 
-        {/* ✅ Apply Button */}
         {s.link && (
-  <a
-    href={s.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-block mt-2 text-xs text-blue-500 font-semibold hover:underline"
-  >
-    {lang === "en" ? "Apply Now →" : "आवेदन करें →"}
-  </a>
-)}
+          <p className="mt-2 text-xs text-blue-500 font-semibold hover:underline">
+            {lang === "en" ? "Apply Now →" : "आवेदन करें →"}
+          </p>
+        )}
 
         <p className="text-[10px] text-primary mt-1">
           ⭐ {lang === "en"
             ? "Recommended for you"
             : "आपके लिए सुझाया गया"}
         </p>
-      </div>
+      </a>
     ))
   ) : (
     <>
       {/* fallback cards */}
+      <div className="p-4 rounded-2xl bg-card border border-border">
+        No schemes available
+      </div>
     </>
   )}
 </div>
@@ -920,8 +922,8 @@ const fetchSchemes = async () => {
       </div>
 
       {/* ─── Risk Alert Modal ─── */}
-      {showAlert && (
-        <div className="fixed inset-0 bg-foreground/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
+      {showAlert === true && (
+        <div className="fixed inset-0 bg-foreground/40 backdrop-blur-sm flex items-center justify-center z-10 p-4 animate-fade-in">
           <div className="bg-card rounded-3xl p-6 max-w-sm w-full shadow-card-hover border border-risk-high/30 animate-bounce-in">
             <div className="flex items-start justify-between mb-4">
               <div className="w-14 h-14 rounded-2xl bg-risk-high-bg flex items-center justify-center">

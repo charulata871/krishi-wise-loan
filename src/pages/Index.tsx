@@ -13,26 +13,31 @@ const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/login`,
-        {
-          name,
-          password
-        }
-      );
+  const res = await axios.post(
+    `${import.meta.env.VITE_API_URL}/api/login`,
+    {
+      name,
+      password
+    }
+  );
 
-      console.log("RESPONSE 👉", res.data);
+  console.log("RESPONSE 👉", res.data);
 
-      localStorage.setItem("token", res.data.token);
+  localStorage.setItem("token", res.data.token);
 
-      console.log("TOKEN SAVED 👉", localStorage.getItem("token"));
+  localStorage.setItem(
+    "krishi_user",
+    res.data.user?.name || name
+  );
 
-      navigate("/dashboard");
+  console.log("USER SAVED 👉", localStorage.getItem("krishi_user"));
 
-    } catch (err) {
-      console.log("ERROR ❌", err);
-      alert("Login failed");
-    } finally {
+  navigate("/dashboard");
+
+} catch (err) {
+  console.log("ERROR ❌", err);
+  alert("Login failed");
+} finally {
       setIsLoading(false);
     }
   };
@@ -44,7 +49,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
-  const [lang, setLang] = useState<"en" | "hi">("en");
+  const [lang, setLang] = useState<"en" | "hi">("hi");
 
   const texts = {
     en: {

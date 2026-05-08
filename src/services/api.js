@@ -12,8 +12,9 @@ const getAuthHeaders = () => {
 
 // 🔍 Analyze Loan
 export const analyzeLoan = async (data) => {
-  const user = localStorage.getItem("krishi_user");
-
+  const user =
+    JSON.parse(localStorage.getItem("krishi_user") || "{}")?.name ||
+    "Farmer";
   const res = await fetch(`${BASE_URL}/analyze`, {
     method: "POST",
     headers: getAuthHeaders(),
@@ -39,7 +40,9 @@ export const getWeather = async (city = "Delhi") => {
 
 // 📜 History
 export const getHistory = async () => {
-  const user = localStorage.getItem("krishi_user");
+  const user =
+    JSON.parse(localStorage.getItem("krishi_user") || "{}")?.name ||
+    "Farmer";
 
   const res = await fetch(`${BASE_URL}/history/${user}`, {
     headers: getAuthHeaders(),

@@ -14,7 +14,7 @@ const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
   const [mounted, setMounted] = useState(false);
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState("hi");
 
   useEffect(() => {
     setTimeout(() => setMounted(true), 50);
@@ -39,12 +39,12 @@ const handleRegister = async (e) => {
     // 🔥 AUTO LOGIN → dashboard
     navigate("/dashboard");
 
-  } catch (err) {
-    console.log(err);
-    alert("Registration failed ❌");
-  } finally {
-    setIsLoading(false);
-  }
+  } catch (err: any) {
+  console.log(err.response?.data);
+  console.log(err.message);
+
+  alert(err.response?.data?.message || "Registration failed ❌");
+}
 };
 
   return (
