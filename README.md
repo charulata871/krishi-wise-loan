@@ -37,7 +37,7 @@ npm install
 
 ⚙️ Environment Variables
 Create .env file:
-VITE_API_URL=http://localhost:5000
+VITE_API_URL="https://backend-1-xj9l.onrender.com/"
 ▶️ Run Project
 npm run dev
 

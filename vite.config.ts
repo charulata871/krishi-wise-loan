@@ -8,7 +8,7 @@ export default defineConfig({
     port: 8080,
     proxy: {
       "/api": {
-        target: "http://localhost:5000", // ✅ FIXED PORT
+        target: "https://backend-1-xj9l.onrender.com/", // ✅ FIXED PORT
         changeOrigin: true,
         secure: false,
       },

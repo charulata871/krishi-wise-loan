@@ -215,7 +215,7 @@ const Dashboard = () => {
   const [weather, setWeather] = useState(null);
   const fetchWeatherFallback = async () => {
   try {
-    const res = await fetch(`http://localhost:5000/api/weather?city=Delhi`);
+    const res = await fetch(`https://backend-1-xj9l.onrender.com/api/weather?city=Delhi`);
     const data = await res.json();
     setWeather(data);
   } catch (err) {
@@ -252,7 +252,7 @@ const intDisplay = result?.interestCost || 0;
 useEffect(() => {
   const fetchWeatherFallback = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/weather?city=Delhi`);
+      const res = await fetch(`https://backend-1-xj9l.onrender.com/api/weather?city=Delhi`);
       if (!res.ok) throw new Error("Fallback failed");
 
       const data = await res.json();
@@ -270,7 +270,7 @@ useEffect(() => {
 
       try {
         const res = await fetch(
-  `http://localhost:5000/api/weather?lat=${lat}&lon=${lon}`
+  `https://backend-1-xj9l.onrender.com/api/weather?lat=${lat}&lon=${lon}`
 );
         if (!res.ok) throw new Error("Location weather failed");
 
