@@ -81,12 +81,17 @@ const handleRegister = async (e) => {
         </div>
 
         <div className="text-white">
-          <h2 className="text-4xl font-bold mb-3">
-            Start your journey 🌱
-          </h2>
-          <p className="text-white/80">
-            Create your account and unlock smart farming finance tools.
-          </p>
+         <h2 className="text-4xl font-bold mb-3">
+  {lang === "hi"
+    ? "अपनी यात्रा शुरू करें 🌱"
+    : "Start your journey 🌱"}
+</h2>
+
+<p className="text-white/80">
+  {lang === "hi"
+    ? "अपना अकाउंट बनाएं और स्मार्ट खेती वित्त उपकरणों का उपयोग करें।"
+    : "Create your account and unlock smart farming finance tools."}
+</p>
         </div>
 
         <div className="flex justify-center">
@@ -107,11 +112,16 @@ const handleRegister = async (e) => {
           <div className="glass-card rounded-3xl p-8">
 
             <h2 className="text-2xl font-bold mb-2">
-              Create Account 🚀
-            </h2>
-            <p className="text-sm text-muted-foreground mb-6">
-              Register to continue
-            </p>
+  {lang === "hi"
+    ? "खाता बनाएं 🚀"
+    : "Create Account 🚀"}
+</h2>
+
+<p className="text-sm text-muted-foreground mb-6">
+  {lang === "hi"
+    ? "जारी रखने के लिए रजिस्टर करें"
+    : "Register to continue"}
+</p>
 
             <form onSubmit={handleRegister} className="space-y-5">
 
@@ -120,8 +130,7 @@ const handleRegister = async (e) => {
                 <User className="absolute left-3 top-3" size={18} />
                 <input
                   type="text"
-                  placeholder="Enter name"
-                  value={name}
+                  placeholder={lang === "hi" ? "नाम दर्ज करें" : "Enter name"}                  value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full pl-10 p-3 rounded-xl border"
                 />
@@ -132,7 +141,7 @@ const handleRegister = async (e) => {
                 <Lock className="absolute left-3 top-3" size={18} />
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter password"
+                 placeholder={lang === "hi" ? "पासवर्ड दर्ज करें" : "Enter password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full pl-10 pr-10 p-3 rounded-xl border"
@@ -152,19 +161,24 @@ const handleRegister = async (e) => {
                 disabled={isLoading}
                 className="w-full bg-primary text-white py-3 rounded-xl"
               >
-                {isLoading ? "Registering..." : "Register"}
+               {isLoading
+  ? (lang === "hi" ? "रजिस्टर हो रहा है..." : "Registering...")
+  : (lang === "hi" ? "रजिस्टर करें" : "Register")} {isLoading ? "Registering..." : "Register"}
               </button>
 
             </form>
 
             {/* Go to Login */}
             <p className="text-sm mt-4 text-center">
-              Already have an account?{" "}
-              <span
-                onClick={() => navigate("/")}
-                className="text-blue-500 cursor-pointer"
-              >
-                Login
+  {lang === "hi"
+    ? "क्या आपका अकाउंट है?"
+    : "Already have an account?"}{" "}
+    
+  <span
+    onClick={() => navigate("/")}
+    className="text-blue-500 cursor-pointer"
+  >
+                {lang === "hi" ? "लॉगिन" : "Login"}
               </span>
             </p>
 
