@@ -12,15 +12,14 @@ const getAuthHeaders = () => {
 
 // 🔍 Analyze Loan
 export const analyzeLoan = async (data) => {
-  const user =
-    JSON.parse(localStorage.getItem("krishi_user") || "{}")?.name ||
-    "Farmer";
+  const user = localStorage.getItem("krishi_user") || "Farmer";
+
   const res = await fetch(`${BASE_URL}/analyze`, {
     method: "POST",
     headers: getAuthHeaders(),
     body: JSON.stringify({
       ...data,
-      name: user, // ✅ FIXED (backend expects name)
+      name: user,
     }),
   });
 
@@ -28,7 +27,6 @@ export const analyzeLoan = async (data) => {
 
   return res.json();
 };
-
 // 🌦 Weather
 export const getWeather = async (city = "Delhi") => {
   const res = await fetch(`${BASE_URL}/weather?city=${city}`);
@@ -40,9 +38,7 @@ export const getWeather = async (city = "Delhi") => {
 
 // 📜 History
 export const getHistory = async () => {
-  const user =
-    JSON.parse(localStorage.getItem("krishi_user") || "{}")?.name ||
-    "Farmer";
+  const user = localStorage.getItem("krishi_user") || "Farmer";
 
   const res = await fetch(`${BASE_URL}/history/${user}`, {
     headers: getAuthHeaders(),

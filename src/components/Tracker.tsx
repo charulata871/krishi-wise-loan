@@ -8,7 +8,7 @@ export default function Tracker() {
   const [data, setData] = useState<any[]>([]);
 
   const fetchData = async () => {
-    const res = await axios.get("http://localhost:5000/api/transaction");
+    const res = await axios.get("https://backend-1-xj9l.onrender.com//api/transaction");
     setData(res.data);
   };
 

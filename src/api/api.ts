@@ -2,7 +2,7 @@ const BASE_URL = "http://localhost:5000/api";
 
 // ANALYZE
 export const analyzeLoan = async (data: any) => {
-const user = JSON.parse(localStorage.getItem("krishi_user") || "{}")?.name || "Farmer";
+const user = localStorage.getItem("krishi_user") || "Farmer";
 
   const res = await fetch(`${BASE_URL}/analyze`, {
     method: "POST",

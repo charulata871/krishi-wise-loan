@@ -340,8 +340,24 @@ const fetchSchemes = async () => {
 
 
   // What-if calculation
-  const whatIfEMI = result ? calcEMI(parseFloat(loanAmt) || 0, whatIfRate[0], whatIfMonths[0]) : 0;
-  const whatIfDTI = whatIfEMI / (parseFloat(income) || 1) * 100;
+  const calculateEMI = (P, annualRate, N) => {
+  const R = annualRate / 12 / 100;
+
+  if (R === 0) return P / N;
+
+  const pow = Math.pow(1 + R, N);
+  return (P * R * pow) / (pow - 1);
+};
+  const whatIfEMI = result
+  ? calculateEMI(
+      Number(loanAmt),
+      whatIfRate[0],
+      whatIfMonths[0]
+    )
+  : 0;
+  const safeIncome = Number(income) || 1;
+
+const whatIfDTI = (whatIfEMI / safeIncome) * 100;
 
   // Chart data
   const chartData = result

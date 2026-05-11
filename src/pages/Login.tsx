@@ -22,8 +22,10 @@ const res = await axios.post(
     console.log("TOKEN 👉", res.data.token);
 
     localStorage.setItem("token", res.data.token);
-    localStorage.setItem("krishi_user", res.data.user.name);
-
+    localStorage.setItem(
+  "krishi_user",
+  JSON.stringify({ name: res.data.user.name })
+);
     console.log("SAVED TOKEN 👉", localStorage.getItem("token"));
 
     navigate("/dashboard");
